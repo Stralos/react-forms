@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
+import Input from './components/molecules/input';
 import _ from 'lodash';
 import yup from './common/yup';
 
@@ -72,25 +73,16 @@ const FormikForm: React.FC = () => {
     >
       {({ values, errors, touched, submitCount }) => (
         <Form>
-          {touched.name && errors.name && !!submitCount && <p>{errors.name}</p>}
-          <Field type="input" name="name" placeholder="name" />
+          <Field name="name" placeholder="name" component={Input}/>
+          <Field name="lastName" placeholder="lastName" component={Input}/>          
+          <Field name="email" placeholder="email" component={Input}/>
+          <Field name="phoneNumber" placeholder="phoneNumber" component={Input}/>
 
-          <Field type="input" name="lastName" placeholder="lastName" />
-          {touched.email && errors.email && !!submitCount && (
-            <p>{errors['email']}</p>
-          )}
-
-          <Field type="input" name="email" placeholder="email" />
-          {touched.phoneNumber && errors.phoneNumber && !!submitCount && (
-            <p>{errors['phoneNumber']}</p>
-          )}
-
-          <Field type="input" name="phoneNumber" placeholder="phone" />
           {touched.homePhone && errors.homePhone && !!submitCount && (
             <p>{errors['homePhone']}</p>
           )}
-
           <Field type="input" name="homePhone" placeholder="homePhone" />
+          
           <FieldArray name="permissions">
             {arrayHelpers => (
               <div>
